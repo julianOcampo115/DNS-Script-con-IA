@@ -53,7 +53,13 @@ Antes de ejecutar el script, asegúrese de cumplir con los siguientes requisitos
 ```
 pip install influxdb-client
 ```
-- Instale InfluxDB 2.x en su máquina host, si es windows descargue:
+- Instale InfluxDB 2.x en su máquina host, si es windows descargue en la terminal de powershell:
+```
+- InfluxDB OSS 2.x
+- wget https://download.influxdata.com/influxdb/releases/influxdb2-2.7.11-windows.zip -UseBasicParsing -OutFile influxdb2-2.7.11-windows.zip
+- Expand-Archive .\influxdb2-2.7.11-windows.zip -DestinationPath 'C:\Program Files\InfluxData\influxdb\'
+```
+- Vaya a la direccion: 'C:\Program Files\InfluxData\influxdb\' y ejecute: .\influxd.exe
 ```
 - InfluxDB OSS 2.x
 - wget https://download.influxdata.com/influxdb/releases/influxdb2-2.7.11-windows.zip -UseBasicParsing -OutFile influxdb2-2.7.11-windows.zip
