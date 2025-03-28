@@ -110,3 +110,9 @@ Al ejecutar el script, debería ver una salida similar a la siguiente en la term
 ```
 - Una vez ejecutada se dará por confirmada la conexión a influx y se podrá seguir con la configuracion de Grafana
   El objetivo es registrar interactivamente en un Dashboard las Ip de los DNS en tiempo real y tener una mejora en la visualización y/o registro.
+- Antes de integrar Grafana, se explicará el codigo de prueba de registro de Ip's en influx: **"influxIPs.py"**
+
+# Manual de Uso: Script **"influxIPs.py"**
+
+## Inicialización del Cliente de InfluxDB
+
