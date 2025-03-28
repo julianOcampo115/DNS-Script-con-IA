@@ -234,10 +234,17 @@ def enviar_archivo_telegram():
 ```
 
 # Resumen
-🔹 Busca servidores DNS en Shodan.
-🔹 Verifica si son recursivos o permiten amplificación.
-🔹 Consulta AbuseIPDB para ver reportes previos.
-🔹 Guarda datos en InfluxDB para análisis en Grafana.
-🔹 Notifica vulnerabilidades por Telegram.
+- 🔹 Busca servidores DNS en Shodan.
+- 🔹 Verifica si son recursivos o permiten amplificación.
+- 🔹 Consulta AbuseIPDB para ver reportes previos.
+- 🔹 Guarda datos en InfluxDB para análisis en Grafana.
+- 🔹 Notifica vulnerabilidades por Telegram.
 
 Este código permite una auditoría rápida y automatizada de servidores DNS expuestos.
+
+
+# Integración en Grafana
+
+- Diríjase a https://grafana.com/grafana/download?platform=windows, descargue el instalador de windows y cuando lo configure, vaya al navegador y estará listo en: http://localhost:3000/, el login es admin admin por defecto.
+
+
