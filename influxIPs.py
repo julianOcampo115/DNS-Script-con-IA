@@ -6,7 +6,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 # 🔹 Configuración de InfluxDB
 INFLUXDB_URL = "http://localhost:8086"
-INFLUXDB_TOKEN = "XhBJrj8zLEdWWx_nGMt_Mp2jDsqSXGOQ-Eknr2VsaUsz09JNm4ReCkD7cnX0pYtzHD0GETLs3dgUGGQyi0jNOA=="
+INFLUXDB_TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 INFLUXDB_ORG = "UAO"
 INFLUXDB_BUCKET = "dns_security"
 
