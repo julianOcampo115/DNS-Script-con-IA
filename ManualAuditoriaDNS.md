@@ -68,49 +68,119 @@ Base de Datos:
 
 # Explicación del Código
 
-## 1. Búsqueda de Servidores DNS
+## 1. Configuración e Importaciones
 
-## 1. Búsqueda de Servidores DNS
+Se importan las bibliotecas necesarias, incluyendo:
 
-El script consulta Shodan para encontrar servidores DNS abiertos en el puerto 53:
+* shodan → Para buscar servidores DNS en Shodan.
+* dns.resolver → Para consultar la resolución de dominios.
+* socket → Para comunicación de red (detectar amplificación).
+* requests → Para interactuar con la API de Telegram y AbuseIPDB.
+* influxdb_client → Para almacenar resultados en InfluxDB.
+* os, time, re, datetime → Funciones del sistema y manejo de tiempo.
+
+## Configuración de APIs
+
+Aquí se definen las claves de API para:
+
+* Shodan → Buscar servidores DNS expuestos.
+* Telegram → Enviar notificaciones de DNS vulnerables.
+* InfluxDB → Almacenar datos de servidores DNS.
+* AbuseIPDB → Revisar historial de reportes de IPs.
+```
+SHODAN_API_KEY = "OscSR1MKM2fICcN5KgVBBJIGnXwrIt8z"
+api = shodan.Shodan(SHODAN_API_KEY)
+
+TELEGRAM_BOT_TOKEN = "XXXXXXXXXXXXXXX"
+CHAT_ID = "XXXXXXXXXXXXXXXX"
+
+ABUSEIPDB_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+INFLUXDB_URL = "http://localhost:8086"
+INFLUXDB_TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+INFLUXDB_ORG = "UAO"
+INFLUXDB_BUCKET = "dns_security"
+```
+
+## 1. Búsqueda de Servidores DNS en Shodan
+
+Busca servidores en Shodan con el puerto 53 abierto y devuelve sus IPs:
 ```
 def buscar_dns_expuestos():
-    resultados = api.search("port:53")
-    return [match['ip_str'] for match in resultados['matches']]
-```
-## 2. Verificación de Resolución
+    try:
+        resultados = api.search("port:53")
+        print(f"Se encontraron {resultados['total']} servidores DNS expuestos.")
+        return [match['ip_str'] for match in resultados['matches']]
+    except shodan.APIError as e:
+        print(f"Error en Shodan: {e}")
+        return []
 
-Comprueba si el DNS responde consultas:
+```
+## 2. Verificación de Resolución(Verificar si un servidor DNS resuelve dominios)
+
+Comprueba si el DNS responde consultas. Se consulta google.com para verificar si el servidor responde:
 ```
 def verificar_resolucion_dns(ip, dominio="google.com"):
-    resolver = dns.resolver.Resolver()
-    resolver.nameservers = [ip]
-    respuesta = resolver.resolve(dominio, "A")
-    return True, respuesta
+    try:
+        resolver = dns.resolver.Resolver()
+        resolver.nameservers = [ip]
+        respuesta = resolver.resolve(dominio, "A")
+        return True, f"{ip} resolvió {dominio} a {', '.join([r.to_text() for r in respuesta])}"
+    except Exception:
+        return False, f"{ip} no resolvió {dominio}"
+
 ```
 ## 3. Detección de Recursividad y Amplificación
 
-Se verifica si el servidor permite consultas recursivas o genera respuestas anormalmente grandes:
+Se verifica si el servidor permite consultas recursivas o genera respuestas anormalmente grandes.
+Un servidor DNS recursivo puede ser explotado para ataques de amplificación.
+Un servidor que responde con paquetes grandes puede ser usado en ataques de DDoS.:
 ```
 def verificar_recursividad(ip):
-    resolver = dns.resolver.Resolver()
-    resolver.nameservers = [ip]
-    resolver.resolve("example.com", "A")
-    return True
+    try:
+        resolver = dns.resolver.Resolver()
+        resolver.nameservers = [ip]
+        resolver.use_edns(0, dns.flags.RD)  # Solicitar recursión
+        resolver.resolve("example.com", "A")
+        return True, f"{ip} es recursivo"
+    except dns.resolver.NoAnswer:
+        return False, f"{ip} no permite recursión"
+    except Exception:
+        return False, f"Error verificando recursividad en {ip}"
 
 def detectar_amplificacion(ip):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.sendto(consulta, (ip, 53))
-    respuesta, _ = sock.recvfrom(512)
-    return len(respuesta) > 150
-```
-## 4. Notificaciones en Telegram
+    try:
+        consulta = b'\x00\x00\x10\x00\x00\x01\x00\x00\x00\x00\x00\x00\x07example\x03com\x00\x00\xFF\x00\x01'
+        familia = socket.AF_INET6 if ":" in ip else socket.AF_INET
+        sock = socket.socket(familia, socket.SOCK_DGRAM)
+        sock.settimeout(2)
+        sock.sendto(consulta, (ip, 53))
+        respuesta, _ = sock.recvfrom(512)
+        size = len(respuesta)
+        if size > 150:
+            return True, f"{ip} responde con {size} bytes [POTENCIAL AMPLIFICACIÓN]"
+        else:
+            return False, f"{ip} responde con {size} bytes"
+    except socket.timeout:
+        return False, f"{ip} no respondió."
+    except Exception:
+        return False, f"Error en {ip} al analizar amplificación."
 
-Si un servidor es vulnerable, se envía una alerta:
 ```
-def enviar_alerta_telegram(ip, detalles):
-    mensaje = f"🚨 DNS Inseguro Detectado: {ip}\n{detalles}"
-    requests.post(f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage", data={"chat_id": CHAT_ID, "text": mensaje})
+## 4. Enviar alerta a Telegram
+
+Si un servidor es recursivo o amplifica, se envía un mensaje a Telegram.:
+```
+def enviar_alerta_telegram(ip, resolucion, recursividad, amplificacion):
+    mensaje = f"🚨 *DNS Inseguro Detectado* 🚨\n📌 *IP:* {ip}\n"
+    mensaje += f"✅ {resolucion}\n" if resolucion else f"❌ {ip} no resolvió google.com\n"
+    mensaje += f"🔄 {recursividad}\n" if recursividad else f"🔒 {ip} no permite recursión\n"
+    mensaje += f"⚠️ {amplificacion}\n" if amplificacion else f"🛑 {ip} no mostró signos de amplificación\n"
+
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    payload = {"chat_id": CHAT_ID, "text": mensaje, "parse_mode": "Markdown"}
+    requests.post(url, data=payload)
+
 ```
 ## 5. Registro en InfluxDB
 
