@@ -247,4 +247,23 @@ Este código permite una auditoría rápida y automatizada de servidores DNS exp
 
 - Diríjase a https://grafana.com/grafana/download?platform=windows, descargue el instalador de windows y cuando lo configure, vaya al navegador y estará listo en: http://localhost:3000/, el login es admin admin por defecto.
 
+- Luego vaya a Connections, Data Sources, busque influxdb y coloque en:
+```
+HTTP
+URL http://localhost:8086
 
+
+Auth
+Basic auth
+
+Basic Auth Details(los de influx)
+User JDAVID
+Password configured
+
+
+InfluxDB Details
+Organization UAO(SU_ORG)
+Token configured(SU_TOKEN)
+
+Y click en Save & test
+```
