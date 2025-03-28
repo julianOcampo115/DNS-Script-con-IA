@@ -267,3 +267,11 @@ Token configured(SU_TOKEN)
 
 Y click en Save & test
 ```
+- Una vez conectado Grafana a influx ya podrá crear sus Dashboards personalizados, por ejemplo, en crear nuevo dashboard, añada una tabla y en Queries escriba:
+```
+from(bucket: "{AQUI_VA_SU_BUCKET}")
+  |> range(start: -10m)
+  |> filter(fn: (r) => r._measurement == "dns_vulnerable2")
+
+Y cuando se ejecute el srcript de DNS_Script.py dele en refresh y podrá ver las IP's registradas correctamente tal y como se le envió a Telegram.
+```
