@@ -1,4 +1,5 @@
 # Manual de Usuario - Auditoría DNS con Shodan y Telegram
+## Código principal: DNS_Script.py
 
 ## 1. Introducción
 
