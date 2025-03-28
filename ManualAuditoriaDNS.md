@@ -227,6 +227,8 @@ def registrar_ip_en_influx(ip, resolucion=False, recursividad=False, amplificaci
 
 ```
 
+![influx](dataExplorerinflux.jpeg)
+
 ## 8. Envío de Reportes
 
 Los resultados se guardan en archivos y se envían a Telegram:
@@ -240,6 +242,8 @@ def enviar_archivo_telegram():
 
 
 ![Reportes](pruebas.jpeg)
+
+![TXT](descarga.jpeg)
 
 ![Telegram](telegram.jpeg)
 
@@ -285,3 +289,5 @@ from(bucket: "{AQUI_VA_SU_BUCKET}")
 
 ```
 - Y cuando se ejecute el srcript de DNS_Script.py dele en refresh y podrá ver las IP's registradas correctamente tal y como se le envió a Telegram.
+
+![Grafana](grafana.jpeg)
