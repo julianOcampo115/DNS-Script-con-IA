@@ -72,8 +72,8 @@ def registrar_en_influxdb(ip, resolviendo, recursiva, amplificacion):
 
 ## 4. Otros prompts usados
 
-- Auditoría DNS con Shodan y Telegram
-"Estoy desarrollando un script en Python para auditar servidores DNS expuestos usando Shodan. El script verifica resolución de dominios, recursividad y posibles ataques de amplificación. También envía alertas a Telegram y almacena datos en InfluxDB. ¿Cómo puedo mejorarlo o hacer que sea más eficiente?"
+- ***Auditoría DNS con Shodan y Telegram***
+- "Estoy desarrollando un script en Python para auditar servidores DNS expuestos usando Shodan. El script verifica resolución de dominios, recursividad y posibles ataques de amplificación. También envía alertas a Telegram y almacena datos en InfluxDB. ¿Cómo puedo mejorarlo o hacer que sea más eficiente?"
 
 - Mejorar detección de DNS vulnerables
 "Tengo un script que busca servidores DNS vulnerables en Shodan y verifica si permiten recursividad o amplificación. ¿Cómo puedo optimizar la detección de amplificación DNS para evitar falsos positivos?"
