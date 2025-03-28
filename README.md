@@ -1,7 +1,7 @@
 # DNS-Script-con-IA
 
 Desarrollo de una Aplicación en Python para Auditoría DNS (Básico y  Avanzado) con Shodan
-El prompt utilizado se encuentra como prompt.md
+## El prompt utilizado se encuentra como prompt.md
 
 # Descripción General
 
