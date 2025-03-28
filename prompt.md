@@ -23,7 +23,7 @@ Prompt de refinamiento:
 
 "Necesito un script en Python que lea direcciones IP desde un archivo de texto y registre en InfluxDB aquellas que sean vulnerables. La base de datos debe almacenar información sobre si la IP resuelve nombres de dominio, si es recursiva y si permite amplificación. También quiero poder consultar las IPs registradas en los últimos 10 minutos."
 
-🔹 Motivo del ajuste: Se especificó cómo debía manejarse la base de datos para almacenar únicamente IPs vulnerables y realizar consultas con filtros de tiempo.
+- Motivo del ajuste: Se especificó cómo debía manejarse la base de datos para almacenar únicamente IPs vulnerables y realizar consultas con filtros de tiempo.
 
 ## Ejemplo 2: Corrección en la fuente de IPs analizadas
 
@@ -31,7 +31,7 @@ Prompt de refinamiento:
 
 "Quiero que las IPs que se registran en InfluxDB sean las que provienen de la función leer_ips_reporte(). Actualmente se están usando IPs predefinidas en una lista, pero quiero que sean las del archivo."
 
-🔹 Motivo del ajuste: Se corrigió la fuente de datos para garantizar que el script procesara correctamente los archivos de IPs generados en escaneos previos.
+- Motivo del ajuste: Se corrigió la fuente de datos para garantizar que el script procesara correctamente los archivos de IPs generados en escaneos previos.
 
 ## Ejemplo 3: Validación del almacenamiento de datos
 
@@ -39,7 +39,7 @@ Prompt de refinamiento:
 
 "El script debería imprimir los datos obtenidos de InfluxDB para verificar que se están almacenando correctamente."
 
-🔹 Motivo del ajuste: Se agregó una verificación de datos para evitar fallos en la integración con la base de datos.
+- Motivo del ajuste: Se agregó una verificación de datos para evitar fallos en la integración con la base de datos.
 
 ## 3. Resultado: Implementación en el Proyecto
 
@@ -51,3 +51,24 @@ Gracias a los prompts y refinamientos, se logró implementar un script funcional
 * Notificaciones en Telegram para alertar en tiempo real sobre servidores vulnerables.
 * Visualización de datos en Grafana para facilitar el análisis de tendencias.
 
+## Ejemplo de Código Generado a Partir de los Prompts
+Aquí se muestra un fragmento de código optimizado con la ayuda de la IA:
+
+```
+def registrar_en_influxdb(ip, resolviendo, recursiva, amplificacion):
+    data_point = {
+        "measurement": "auditoria_dns",
+        "tags": {"ip": ip},
+        "fields": {
+            "resolviendo": int(resolviendo),
+            "recursiva": int(recursiva),
+            "amplificacion": int(amplificacion)
+        }
+    }
+    influxdb_client.write_points([data_point])
+```
+- Incorporación al proyecto: Este código fue generado tras ajustar los prompts para mejorar la estructura de almacenamiento en InfluxDB.
+
+## 4. Conclusión
+
+El uso de IA en este desarrollo permitió optimizar la estructura del código, mejorar su eficiencia y detectar errores antes de la implementación final. A través de iteraciones y refinamientos de los prompts, se logró un script robusto con buenas prácticas de seguridad y escalabilidad.
