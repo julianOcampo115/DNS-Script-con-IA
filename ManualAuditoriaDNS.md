@@ -167,6 +167,9 @@ def detectar_amplificacion(ip):
         return False, f"Error en {ip} al analizar amplificación."
 
 ```
+
+![IDLE](salidaIDLE.jpeg)
+
 ## 6. Enviar alerta a Telegram
 
 Si un servidor es recursivo o amplifica, se envía un mensaje a Telegram.:
