@@ -184,7 +184,7 @@ tables = query_api.query(query, org=INFLUXDB_ORG)
 o Filtra los datos dentro de los últimos 10 minutos.
 o Busca las mediciones que pertenezcan a "dns_vulnerable".
 ```
-
+![influxip](ipdb.jpeg)
 ## Mostrar Resultados
 
 ```
@@ -202,6 +202,7 @@ o Tiempo: Momento en que se almacenó el dato.
 o IP: Dirección analizada.
 o Resuelve: Si respondió consultas DNS.
 ```
+![influxipdb2](ipdb2.jpeg)
 ## Cierre de Conexión
 
 ```
