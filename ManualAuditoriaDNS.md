@@ -2,20 +2,17 @@
 
 ## 1. Introducción
 
-Este software permite auditar servidores DNS expuestos en Shodan, verificando si permiten recursividad o amplificación, notificando sobre vulnerabilidades mediante Telegram y almacenando datos en InfluxDB.
+Este software permite auditar servidores DNS expuestos en Shodan, verificando si permiten recursividad o amplificación, notificando sobre vulnerabilidades mediante Telegram sin antes pasar por la pagina "https://www.abuseipdb.com/" y almacenando datos en InfluxDB para luego observarlos en Grafana.
 
 ## 2. Requisitos Previos
 
-Tener una cuenta en Shodan con una API Key activa.
-
-Un bot de Telegram con su token de acceso.
-
-Un servidor con InfluxDB instalado.
-
-Python 3.x con las siguientes librerías instaladas:
-
+* Tener una cuenta en Shodan con una API Key activa.
+* Un bot de Telegram con su token de acceso.
+* Un servidor con InfluxDB instalado.
+* Python 3.x con las siguientes librerías instaladas:
+```
 pip install shodan dnspython requests influxdb-client
-
+```
 ## 3. Configuración
 
 - 3.1. Configurar las Credenciales
@@ -28,28 +25,19 @@ CHAT_ID = "SU_CHAT_ID"
 INFLUXDB_URL = "http://localhost:8086"
 INFLUXDB_TOKEN = "SU_INFLUXDB_TOKEN"
 INFLUXDB_ORG = "SU_ORG"
-INFLUXDB_BUCKET = "dns_security"
+INFLUXDB_BUCKET = "SU_BUCKET"
 
 ## 4. Ejecución del Script
 
 Para iniciar la auditoría, simplemente ejecute:
-
 python script_dns_audit.py
-
 El script realizará las siguientes acciones:
-
 Buscará servidores DNS abiertos en Shodan.
-
 Verificará si pueden resolver dominios.
-
 Analizará si permiten recursividad.
-
 Detectará posible amplificación.
-
 Notificará por Telegram si un servidor es vulnerable.
-
 Almacenará los resultados en InfluxDB.
-
 Generará un reporte de IPs vulnerables en archivos locales.
 
 ## 5. Resultados y Reportes
@@ -94,7 +82,7 @@ Para soporte adicional, consulte la documentación de cada servicio.
 
 
 
-**# Explicación del Código**
+# Explicación del Código
 
 ## 1. Búsqueda de Servidores DNS
 
