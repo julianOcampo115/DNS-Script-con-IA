@@ -183,7 +183,7 @@ def enviar_alerta_telegram(ip, resolucion, recursividad, amplificacion):
 
 ```
 
-![Telegram](telegram.jpeg)
+
 
 
 ## 7. Verificar IPs en AbuseIPDB
@@ -233,10 +233,10 @@ def enviar_archivo_telegram():
     files = {"document": open(REPORTE_VULNERABLES, "rb")}
     data = {"chat_id": CHAT_ID, "caption": "📄 *Reporte de IPs Vulnerables*"}
     requests.post(url, files=files, data=data)
-
-
 ```
 
+
+![Telegram](telegram.jpeg)
 
 # Resumen
 - 🔹 Busca servidores DNS en Shodan.
