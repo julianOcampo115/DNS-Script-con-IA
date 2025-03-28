@@ -151,3 +151,21 @@ o Agrega un tag con la IP.
 o Define campos (resuelve, recursivo, amplifica) con valores numéricos (0 o 1).
 o Guarda la información en InfluxDB.
 ```
+## Simulación de Detección de IPs Vulnerables
+```
+ips_detectadas = [
+    ("192.168.1.1", True, False, True),
+    ("192.168.1.2", False, True, False),
+    ("192.168.1.3", True, True, True),
+]
+
+for ip, resolvio, recursivo, amplifica in ips_detectadas:
+    if recursivo or amplifica:  # Solo registrar si es vulnerable
+        registrar_ip_en_influx(ip, resolvio, recursivo, amplifica)
+
+```
+
+* Se crea una lista de IPs simuladas con valores de vulnerabilidad.
+* Se recorre la lista y solo se registran las IPs que presentan recursividad o amplificación (potencialmente peligrosas).
+
+## Consulta de Datos en InfluxDB
