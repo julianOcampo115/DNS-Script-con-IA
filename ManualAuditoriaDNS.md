@@ -182,6 +182,10 @@ def enviar_alerta_telegram(ip, resolucion, recursividad, amplificacion):
     requests.post(url, data=payload)
 
 ```
+
+![Telegram](telegram.jpeg)
+
+
 ## 7. Verificar IPs en AbuseIPDB
 
 Revisa si una IP ha sido reportada en el último año:
@@ -232,7 +236,7 @@ def enviar_archivo_telegram():
 
 
 ```
-![Telegram](telegram.jpeg)
+
 
 # Resumen
 - 🔹 Busca servidores DNS en Shodan.
