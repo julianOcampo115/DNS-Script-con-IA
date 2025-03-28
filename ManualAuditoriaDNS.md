@@ -291,3 +291,7 @@ from(bucket: "{AQUI_VA_SU_BUCKET}")
 - Y cuando se ejecute el srcript de DNS_Script.py dele en refresh y podrá ver las IP's registradas correctamente tal y como se le envió a Telegram.
 
 ![Grafana](grafana.jpeg)
+
+![IPS](ip.jpeg)
+
+![ABUSE](ip2.jpeg)
