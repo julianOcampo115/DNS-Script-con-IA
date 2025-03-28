@@ -115,4 +115,39 @@ Al ejecutar el script, debería ver una salida similar a la siguiente en la term
 # Manual de Uso: Script **"influxIPs.py"**
 
 ## Inicialización del Cliente de InfluxDB
+```
+client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
+write_api = client.write_api(write_options=SYNCHRONOUS)
+query_api = client.query_api()
+```
+* Se crea un cliente de InfluxDB que permite escribir y leer datos.
+* write_api: Permite escribir datos en la base de datos.
+* query_api: Permite consultar datos de la base de datos.
 
+## Función para Registrar IPs Vulnerables
+```
+def registrar_ip_en_influx(ip, resolucion, recursividad, amplificacion):
+    """Registra en InfluxDB una IP vulnerable con detalles."""
+    point = Point("dns_vulnerable") \
+        .tag("ip", ip) \
+        .field("resuelve", int(resolucion)) \
+        .field("recursivo", int(recursividad)) \
+        .field("amplifica", int(amplificacion))
+
+    write_api.write(bucket=INFLUXDB_BUCKET, org=INFLUXDB_ORG, record=point)
+    print(f"✅ IP {ip} registrada en InfluxDB.")
+```
+* Recibe:
+```
+o ip: Dirección IP a registrar.
+o resolucion: Si la IP resuelve consultas DNS.
+o recursividad: Si la IP permite recursividad (vulnerabilidad potencial).
+o amplificacion: Si la IP permite amplificación (ataques DDoS).
+```
+* Crea:
+```
+o Un objeto Point con la medición "dns_vulnerable".
+o Agrega un tag con la IP.
+o Define campos (resuelve, recursivo, amplifica) con valores numéricos (0 o 1).
+o Guarda la información en InfluxDB.
+```
