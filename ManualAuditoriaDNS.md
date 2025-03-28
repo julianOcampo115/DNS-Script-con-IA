@@ -296,3 +296,44 @@ from(bucket: "{AQUI_VA_SU_BUCKET}")
 ![IPS](ip.jpeg)
 
 ![ABUSE](ip2.jpeg)
+
+# Conclusiones
+## Automatización y Eficiencia:
+
+- La implementación de Shodan y AbuseIPDB permite una detección automatizada de servidores DNS vulnerables, reduciendo el tiempo y esfuerzo en auditorías manuales.
+- El uso de InfluxDB facilita el almacenamiento y análisis a largo plazo de las vulnerabilidades detectadas.
+
+## Seguridad y Prevención:
+
+- La detección de recursividad abierta y amplificación DNS ayuda a prevenir ataques DDoS basados en esta técnica.
+- La integración con AbuseIPDB permite verificar si una IP ya ha sido reportada por actividades maliciosas, agregando una capa de validación adicional.
+
+## Notificación y Seguimiento:
+
+- La implementación de notificaciones en Telegram proporciona un sistema de alertas en tiempo real, permitiendo actuar rápidamente ante servidores vulnerables.
+- La generación de reportes estructurados en archivos facilita el análisis posterior y la documentación de hallazgos.
+
+## Escalabilidad y Mejora Continua:
+
+- La estructura modular del código permite agregar nuevas funcionalidades sin afectar la funcionalidad base.
+- Se pueden ampliar las verificaciones con otros servicios de reputación o bases de datos de amenazas.
+
+
+# Recomendaciones
+## Optimización del Código:
+
+- Mejorar la gestión de excepciones para evitar interrupciones en caso de errores con la API de Shodan o conexiones fallidas.
+- Agregar logging detallado para depurar y analizar mejor posibles fallos.
+
+## Seguridad de las Credenciales:
+
+- Utilizar variables de entorno o archivos .env en lugar de incluir las claves de API directamente en el código.
+
+## Ampliación de Funcionalidades:
+
+- Agregar más pruebas a la verificación de seguridad, como detección de spoofing DNS.
+
+## Automatización y Despliegue:
+
+- Utilizar contenedores Docker para facilitar la implementación y ejecución del script en distintos entornos.
+- Programar ejecuciones automáticas con cron o un servicio como systemd para auditorías periódicas.
