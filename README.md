@@ -31,7 +31,9 @@ o Paginación en Shodan (o herramienta alternativa).
 o Múltiples dominios de prueba.
 o Integración de lista negra (blacklist).
 ```
-# Manual de Uso: Script de Conexión y Consulta a InfluxDB
+# Manual de Uso: Script de Conexión y Consulta a InfluxDB "influxconnection.py"
+
+- Manual para la prueba de conexión de python con InfluxDB
 
 ## 1. Descripción General
 
@@ -42,7 +44,7 @@ Este script en Python permite conectar con una instancia de InfluxDB 2.x, escrib
 Antes de ejecutar el script, asegúrese de cumplir con los siguientes requisitos:
 
 * Tener InfluxDB 2.x instalado y en ejecución.
-* Contar con un bucket configurado en InfluxDB (por defecto: dns_security).
+* Contar con un bucket configurado en InfluxDB.
 * Tener una API Token de InfluxDB con permisos de escritura y lectura.
 * Python 3.7 o superior instalado.
 * Instalar las dependencias necesarias.
@@ -64,3 +66,14 @@ pip install influxdb-client
 Luego de estar funcionando el influx diríjase al navegador y escriba: "http://localhost:8086"
 Una vez dentro cree su TOKEN, ORGANIZACION y BUCKET
 ```
+
+## 4. Configuración
+
+Antes de ejecutar el script, edite las siguientes variables para adaptarlas a su entorno:
+```
+INFLUXDB_URL = "http://localhost:8086"  # URL del servidor InfluxDB
+INFLUXDB_TOKEN = "XXXXXXXXXXXXXXXXXXXXXX"  # Reemplace con su token de autenticación
+INFLUXDB_ORG = ""  # Nombre de la organización
+INFLUXDB_BUCKET = ""  # Nombre del bucket donde se almacenarán los datos
+```
+
