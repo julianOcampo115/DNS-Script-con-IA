@@ -169,7 +169,7 @@ import requests
 from datetime import datetime
 import re
 
-ABUSEIPDB_API_KEY = "c6e2e5357df89a36ee5f2d6f7feea3c70b98c21819c14a34b003ac5a3efd9b4e2cc34424bf59f1e8"
+ABUSEIPDB_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 def verificar_ip_abuseipdb(ip):
     url = "https://api.abuseipdb.com/api/v2/check"
@@ -301,7 +301,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 # 🔹 Configuración de InfluxDB
 INFLUXDB_URL = "http://localhost:8086"
-INFLUXDB_TOKEN = "XhBJrj8zLEdWWx_nGMt_Mp2jDsqSXGOQ-Eknr2VsaUsz09JNm4ReCkD7cnX0pYtzHD0GETLs3dgUGGQyi0jNOA=="
+INFLUXDB_TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 INFLUXDB_ORG = "UAO"
 INFLUXDB_BUCKET = "dns_security"
 
