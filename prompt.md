@@ -15,13 +15,25 @@ En el desarrollo de la aplicación de auditoría DNS, se utilizó Inteligencia A
 
 - **2.2 Iteraciones y Refinamientos**
 
-## Prompt Secundario:
+Durante el desarrollo, se realizaron ajustes en los prompts para mejorar el código y solucionar problemas específicos:
+
+## Ejemplo 1: Integración con InfluxDB
+
+Prompt de refinamiento:
 
 "Necesito un script en Python que lea direcciones IP desde un archivo de texto y registre en InfluxDB aquellas que sean vulnerables. La base de datos debe almacenar información sobre si la IP resuelve nombres de dominio, si es recursiva y si permite amplificación. También quiero poder consultar las IPs registradas en los últimos 10 minutos."
 
-## Refinamientos Posteriores:
+🔹 Motivo del ajuste: Se especificó cómo debía manejarse la base de datos para almacenar únicamente IPs vulnerables y realizar consultas con filtros de tiempo.
+
+## Ejemplo 2: Corrección en la fuente de IPs analizadas
+
+Prompt de refinamiento:
 
 "Quiero que las IPs que se registran en InfluxDB sean las que provienen de la función leer_ips_reporte(). Actualmente se están usando IPs predefinidas en una lista, pero quiero que sean las del archivo."
+
+🔹 Motivo del ajuste: Se corrigió la fuente de datos para garantizar que el script procesara correctamente los archivos de IPs generados en escaneos previos.
+
+## Ejemplo 3: Validación del almacenamiento de datos
 
 "El script debería imprimir los datos obtenidos de InfluxDB para verificar que se están almacenando correctamente."
 
