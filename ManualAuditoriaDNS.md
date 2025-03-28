@@ -19,36 +19,38 @@ pip install shodan dnspython requests influxdb-client
 
 Antes de ejecutar el script, edite las siguientes variables con sus credenciales:
 
-SHODAN_API_KEY = "SU_API_KEY"
-TELEGRAM_BOT_TOKEN = "SU_TELEGRAM_TOKEN"
-CHAT_ID = "SU_CHAT_ID"
-INFLUXDB_URL = "http://localhost:8086"
-INFLUXDB_TOKEN = "SU_INFLUXDB_TOKEN"
-INFLUXDB_ORG = "SU_ORG"
-INFLUXDB_BUCKET = "SU_BUCKET"
+* SHODAN_API_KEY = "SU_API_KEY"
+* TELEGRAM_BOT_TOKEN = "SU_TELEGRAM_TOKEN"
+* CHAT_ID = "SU_CHAT_ID"
+* INFLUXDB_URL = "http://localhost:8086"
+* INFLUXDB_TOKEN = "SU_INFLUXDB_TOKEN"
+* INFLUXDB_ORG = "SU_ORG"
+* INFLUXDB_BUCKET = "SU_BUCKET"
 
 ## 4. Ejecución del Script
 
 Para iniciar la auditoría, simplemente ejecute:
+```
 python script_dns_audit.py
+```
 El script realizará las siguientes acciones:
-Buscará servidores DNS abiertos en Shodan.
-Verificará si pueden resolver dominios.
-Analizará si permiten recursividad.
-Detectará posible amplificación.
-Notificará por Telegram si un servidor es vulnerable.
-Almacenará los resultados en InfluxDB.
-Generará un reporte de IPs vulnerables en archivos locales.
+1. Buscará servidores DNS abiertos en Shodan.
+2. Verificará si pueden resolver dominios.
+3. Analizará si permiten recursividad.
+4. Detectará posible amplificación.
+5. Notificará por Telegram si un servidor es vulnerable.
+6. Almacenará los resultados en InfluxDB.
+7. Generará un reporte de IPs vulnerables en archivos locales.
 
 ## 5. Resultados y Reportes
 
-Archivos Generados:
+* Archivos Generados:
 
-resultados_dns.txt: Contiene los resultados de la auditoría.
+- resultados_dns.txt: Contiene los resultados de la auditoría.
 
-reporte_vulnerables.txt: IPs detectadas con vulnerabilidades.
+- reporte_vulnerables.txt: IPs detectadas con vulnerabilidades.
 
-Notificaciones:
+* Notificaciones:
 
 Telegram recibe alertas con detalles de las IPs vulnerables.
 
