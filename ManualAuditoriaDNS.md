@@ -70,26 +70,28 @@ Base de Datos:
 
 ## 1. Búsqueda de Servidores DNS
 
-El script consulta Shodan para encontrar servidores DNS abiertos en el puerto 53:
+## 1. Búsqueda de Servidores DNS
 
+El script consulta Shodan para encontrar servidores DNS abiertos en el puerto 53:
+```
 def buscar_dns_expuestos():
     resultados = api.search("port:53")
     return [match['ip_str'] for match in resultados['matches']]
-
+```
 ## 2. Verificación de Resolución
 
 Comprueba si el DNS responde consultas:
-
+```
 def verificar_resolucion_dns(ip, dominio="google.com"):
     resolver = dns.resolver.Resolver()
     resolver.nameservers = [ip]
     respuesta = resolver.resolve(dominio, "A")
     return True, respuesta
-
+```
 ## 3. Detección de Recursividad y Amplificación
 
 Se verifica si el servidor permite consultas recursivas o genera respuestas anormalmente grandes:
-
+```
 def verificar_recursividad(ip):
     resolver = dns.resolver.Resolver()
     resolver.nameservers = [ip]
@@ -101,21 +103,21 @@ def detectar_amplificacion(ip):
     sock.sendto(consulta, (ip, 53))
     respuesta, _ = sock.recvfrom(512)
     return len(respuesta) > 150
-
+```
 ## 4. Notificaciones en Telegram
 
 Si un servidor es vulnerable, se envía una alerta:
-
+```
 def enviar_alerta_telegram(ip, detalles):
     mensaje = f"🚨 DNS Inseguro Detectado: {ip}\n{detalles}"
     requests.post(f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage", data={"chat_id": CHAT_ID, "text": mensaje})
-
+```
 ## 5. Registro en InfluxDB
 
 Los resultados se almacenan para análisis posterior:
-
+```
 def registrar_ip_en_influx(ip, recursividad, amplificacion):
     point = Point("dns_vulnerable").tag("ip", ip).field("recursivo", int(recursividad)).field("amplifica", int(amplificacion))
     write_api.write(bucket=INFLUXDB_BUCKET, org=INFLUXDB_ORG, record=point)
-
+```
 Este código permite una auditoría rápida y automatizada de servidores DNS expuestos.
