@@ -202,3 +202,13 @@ o Tiempo: Momento en que se almacenó el dato.
 o IP: Dirección analizada.
 o Resuelve: Si respondió consultas DNS.
 ```
+## Cierre de Conexión
+
+```
+client.close()
+```
+* Se cierra la conexión a InfluxDB para liberar recursos.
+
+## Conclusión
+
+Este script permite detectar y almacenar información sobre servidores DNS potencialmente vulnerables en InfluxDB. Además, consulta y muestra los datos registrados en los últimos 10 minutos.
