@@ -35,17 +35,19 @@ Prompt de refinamiento:
 
 ## Ejemplo 3: Validación del almacenamiento de datos
 
+Prompt de refinamiento:
+
 "El script debería imprimir los datos obtenidos de InfluxDB para verificar que se están almacenando correctamente."
 
-## 2. Alcance de la Aplicación
+🔹 Motivo del ajuste: Se agregó una verificación de datos para evitar fallos en la integración con la base de datos.
 
-Este script tiene como objetivo auditar servidores DNS en busca de vulnerabilidades que podrían ser explotadas en ataques DDoS mediante amplificación. La aplicación:
+## 3. Resultado: Implementación en el Proyecto
 
-Lee direcciones IP desde un archivo de texto generado previamente por un escaneo.
+Gracias a los prompts y refinamientos, se logró implementar un script funcional con las siguientes características:
 
-Registra en InfluxDB solo aquellas direcciones IP que presentan vulnerabilidades, identificando si resuelven nombres de dominio, si permiten consultas recursivas o si son susceptibles a amplificación.
-
-Consulta los últimos registros en la base de datos para verificar que se están almacenando correctamente.
-
-Este código puede ser utilizado en auditorías de seguridad de redes, permitiendo identificar servidores DNS mal configurados y tomar medidas correctivas.
+* Escaneo de servidores DNS para detectar vulnerabilidades de recursividad y amplificación.
+* Almacenamiento en InfluxDB de las IPs vulnerables con detalles sobre su estado.
+* Generación de reportes en archivos .csv y .txt para documentación de hallazgos.
+* Notificaciones en Telegram para alertar en tiempo real sobre servidores vulnerables.
+* Visualización de datos en Grafana para facilitar el análisis de tendencias.
 
