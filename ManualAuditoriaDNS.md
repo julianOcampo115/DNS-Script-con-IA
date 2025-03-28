@@ -232,6 +232,7 @@ def enviar_archivo_telegram():
 
 
 ```
+![Telegram](telegram.jpeg)
 
 # Resumen
 - 🔹 Busca servidores DNS en Shodan.
@@ -273,5 +274,5 @@ from(bucket: "{AQUI_VA_SU_BUCKET}")
   |> range(start: -10m)
   |> filter(fn: (r) => r._measurement == "dns_vulnerable2")
 
-Y cuando se ejecute el srcript de DNS_Script.py dele en refresh y podrá ver las IP's registradas correctamente tal y como se le envió a Telegram.
 ```
+- Y cuando se ejecute el srcript de DNS_Script.py dele en refresh y podrá ver las IP's registradas correctamente tal y como se le envió a Telegram.
