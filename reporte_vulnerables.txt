@@ -1,0 +1,8 @@
+### Reporte de Servidores DNS Potencialmente Inseguros ###
+
+
+[!] IP: 103.94.5.178
+- 103.94.5.178 resolvió google.com a 216.239.38.120
+- 103.94.5.178 es recursivo
+- 103.94.5.178 responde con 12 bytes
+🚨 **¡Este servidor puede ser explotado!** 🚨

@@ -1,0 +1,34 @@
+### Resultados de Auditoría DNS ###
+
+
+[*] IP: 160.25.197.236
+- 160.25.197.236 no resolvió google.com
+
+[*] IP: 34.160.86.201
+- 34.160.86.201 no resolvió google.com
+
+[*] IP: 87.234.192.216
+- 87.234.192.216 no resolvió google.com
+
+[*] IP: 103.94.5.178
+- 103.94.5.178 resolvió google.com a 216.239.38.120
+- 103.94.5.178 es recursivo
+- 103.94.5.178 responde con 12 bytes
+
+[*] IP: 135.125.203.233
+- 135.125.203.233 no resolvió google.com
+
+[*] IP: 38.7.36.234
+- 38.7.36.234 no resolvió google.com
+
+[*] IP: 46.32.252.127
+- 46.32.252.127 no resolvió google.com
+
+[*] IP: 188.149.180.27
+- 188.149.180.27 no resolvió google.com
+
+[*] IP: 173.198.215.89
+- 173.198.215.89 no resolvió google.com
+
+[*] IP: 201.49.10.39
+- 201.49.10.39 no resolvió google.com
