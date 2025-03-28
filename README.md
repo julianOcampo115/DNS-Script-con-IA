@@ -77,3 +77,34 @@ INFLUXDB_ORG = ""  # Nombre de la organización
 INFLUXDB_BUCKET = ""  # Nombre del bucket donde se almacenarán los datos
 ```
 
+## 5. Ejecución del Script
+
+Para ejecutar el script, simplemente ejecute el siguiente comando en la terminal:
+```
+python script.py
+```
+
+El script realizará las siguientes acciones:
+
+* Conectar con InfluxDB usando las credenciales configuradas.
+* Escribir cinco puntos de datos en la serie temporal con la medición measurement1.
+* Realizar una consulta para obtener los datos escritos en los últimos 10 minutos.
+* Imprimir los resultados en la consola.
+
+## 6. Interpretación de los Resultados
+
+Al ejecutar el script, debería ver una salida similar a la siguiente en la terminal:
+```
+📡 Escribiendo punto 0 en InfluxDB
+📡 Escribiendo punto 1 en InfluxDB
+📡 Escribiendo punto 2 en InfluxDB
+📡 Escribiendo punto 3 en InfluxDB
+📡 Escribiendo punto 4 en InfluxDB
+✅ Datos escritos en InfluxDB con éxito.
+📡 Tiempo: 2025-03-26T12:34:56.789Z, Valor: 0
+📡 Tiempo: 2025-03-26T12:34:57.789Z, Valor: 1
+📡 Tiempo: 2025-03-26T12:34:58.789Z, Valor: 2
+📡 Tiempo: 2025-03-26T12:34:59.789Z, Valor: 3
+📡 Tiempo: 2025-03-26T12:35:00.789Z, Valor: 4
+
+```
