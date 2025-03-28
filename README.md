@@ -61,7 +61,6 @@ pip install influxdb-client
 ```
 - Vaya a la direccion: 'C:\Program Files\InfluxData\influxdb\' y ejecute: .\influxd.exe
 ```
-- InfluxDB OSS 2.x
-- wget https://download.influxdata.com/influxdb/releases/influxdb2-2.7.11-windows.zip -UseBasicParsing -OutFile influxdb2-2.7.11-windows.zip
-- Expand-Archive .\influxdb2-2.7.11-windows.zip -DestinationPath 'C:\Program Files\InfluxData\influxdb\'
+Luego de estar funcionando el influx diríjase al navegador y escriba: "http://localhost:8086"
+Una vez dentro cree su TOKEN, ORGANIZACION y BUCKET
 ```
