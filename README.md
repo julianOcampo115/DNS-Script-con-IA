@@ -108,3 +108,5 @@ Al ejecutar el script, debería ver una salida similar a la siguiente en la term
 📡 Tiempo: 2025-03-26T12:35:00.789Z, Valor: 4
 
 ```
+- Una vez ejecutada se dará por confirmada la conexión a influx y se podrá seguir con la configuracion de Grafana
+  El objetivo es registrar interactivamente en un Dashboard las Ip de los DNS en tiempo real y tener una mejora en la visualización y/o registro.
