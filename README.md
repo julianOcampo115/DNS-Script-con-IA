@@ -169,3 +169,36 @@ for ip, resolvio, recursivo, amplifica in ips_detectadas:
 * Se recorre la lista y solo se registran las IPs que presentan recursividad o amplificación (potencialmente peligrosas).
 
 ## Consulta de Datos en InfluxDB
+```
+query = f"""
+from(bucket: "{INFLUXDB_BUCKET}")
+  |> range(start: -10m)
+  |> filter(fn: (r) => r._measurement == "dns_vulnerable")
+"""
+
+tables = query_api.query(query, org=INFLUXDB_ORG)
+```
+* Se define una consulta en Flux, el lenguaje de consultas de InfluxDB.
+* La consulta:
+```
+o Filtra los datos dentro de los últimos 10 minutos.
+o Busca las mediciones que pertenezcan a "dns_vulnerable".
+```
+
+## Mostrar Resultados
+
+```
+print("\n📡 Resultados en InfluxDB:")
+for table in tables:
+    for record in table.records:
+        print(f"Tiempo: {record.get_time()}, IP: {record.values['ip']}, "
+              f"Resuelve: {record.values['_value']}")
+```
+
+* Se recorre la respuesta de InfluxDB para mostrar cada registro.
+* Muestra:
+```
+o Tiempo: Momento en que se almacenó el dato.
+o IP: Dirección analizada.
+o Resuelve: Si respondió consultas DNS.
+```
