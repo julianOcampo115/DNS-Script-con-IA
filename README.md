@@ -31,3 +31,31 @@ o Paginación en Shodan (o herramienta alternativa).
 o Múltiples dominios de prueba.
 o Integración de lista negra (blacklist).
 ```
+# Manual de Uso: Script de Conexión y Consulta a InfluxDB
+
+## 1. Descripción General
+
+Este script en Python permite conectar con una instancia de InfluxDB 2.x, escribir datos en un bucket y posteriormente realizar una consulta para obtener esos datos.
+
+## 2. Requisitos Previos
+
+Antes de ejecutar el script, asegúrese de cumplir con los siguientes requisitos:
+
+* Tener InfluxDB 2.x instalado y en ejecución.
+* Contar con un bucket configurado en InfluxDB (por defecto: dns_security).
+* Tener una API Token de InfluxDB con permisos de escritura y lectura.
+* Python 3.7 o superior instalado.
+* Instalar las dependencias necesarias.
+
+## 3. Instalación
+
+- Ejecute el siguiente comando en el CMD para instalar la librería requerida:
+```
+pip install influxdb-client
+```
+- Instale InfluxDB 2.x en su máquina host, si es windows descargue:
+```
+- InfluxDB OSS 2.x
+- wget https://download.influxdata.com/influxdb/releases/influxdb2-2.7.11-windows.zip -UseBasicParsing -OutFile influxdb2-2.7.11-windows.zip
+- Expand-Archive .\influxdb2-2.7.11-windows.zip -DestinationPath 'C:\Program Files\InfluxData\influxdb\'
+```
