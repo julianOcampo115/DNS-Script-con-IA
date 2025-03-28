@@ -236,6 +236,8 @@ def enviar_archivo_telegram():
 ```
 
 
+![Reportes](pruebas.jpeg)
+
 ![Telegram](telegram.jpeg)
 
 # Resumen
