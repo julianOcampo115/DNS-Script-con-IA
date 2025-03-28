@@ -72,29 +72,21 @@ def registrar_en_influxdb(ip, resolviendo, recursiva, amplificacion):
 
 ## 4. Otros prompts usados
 
-- ***Auditoría DNS con Shodan y Telegram***
-- "Estoy desarrollando un script en Python para auditar servidores DNS expuestos usando Shodan. El script verifica resolución de dominios, recursividad y posibles ataques de amplificación. También envía alertas a Telegram y almacena datos en InfluxDB. ¿Cómo puedo mejorarlo o hacer que sea más eficiente?"
+- ***Auditoría DNS con Shodan y Telegram***: "Estoy desarrollando un script en Python para auditar servidores DNS expuestos usando Shodan. El script verifica resolución de dominios, recursividad y posibles ataques de amplificación. También envía alertas a Telegram y almacena datos en InfluxDB. ¿Cómo puedo mejorarlo o hacer que sea más eficiente?"
 
-- ***Mejorar detección de DNS vulnerables***
-- "Tengo un script que busca servidores DNS vulnerables en Shodan y verifica si permiten recursividad o amplificación. ¿Cómo puedo optimizar la detección de amplificación DNS para evitar falsos positivos?"
+- ***Mejorar detección de DNS vulnerables***: "Tengo un script que busca servidores DNS vulnerables en Shodan y verifica si permiten recursividad o amplificación. ¿Cómo puedo optimizar la detección de amplificación DNS para evitar falsos positivos?"
 
-- ***Optimización de consultas a AbuseIPDB***
-- "Mi script verifica si ciertas IPs han sido reportadas en AbuseIPDB. Sin embargo, tengo límites en la API. ¿Cómo puedo hacer las consultas de manera más eficiente sin exceder las restricciones?"
+- ***Optimización de consultas a AbuseIPDB***: "Mi script verifica si ciertas IPs han sido reportadas en AbuseIPDB. Sin embargo, tengo límites en la API. ¿Cómo puedo hacer las consultas de manera más eficiente sin exceder las restricciones?"
 
-- ***Automatización y reportes en Telegram***
-- "Estoy enviando reportes de servidores DNS vulnerables a Telegram como mensajes y archivos adjuntos. ¿Cuál es la mejor forma de formatear los mensajes para que sean más claros y fáciles de leer?"
+- ***Automatización y reportes en Telegram***: "Estoy enviando reportes de servidores DNS vulnerables a Telegram como mensajes y archivos adjuntos. ¿Cuál es la mejor forma de formatear los mensajes para que sean más claros y fáciles de leer?"
 
-- ***Almacenamiento en InfluxDB***
-- "Quiero registrar los resultados de mi auditoría DNS en InfluxDB, incluyendo datos como IP, si permite recursividad y si es vulnerable a amplificación. ¿Cómo puedo estructurar los datos para facilitar la visualización en Grafana?"
+- ***Almacenamiento en InfluxDB***: "Quiero registrar los resultados de mi auditoría DNS en InfluxDB, incluyendo datos como IP, si permite recursividad y si es vulnerable a amplificación. ¿Cómo puedo estructurar los datos para facilitar la visualización en Grafana?"
 
-- ***Manejo de errores en el script***
-- "Mi script usa varias APIs y conexiones de red (Shodan, AbuseIPDB, Telegram, DNS). ¿Cuáles son las mejores prácticas para manejar errores de conexión y evitar que el script se detenga inesperadamente?"
+- ***Manejo de errores en el script***: "Mi script usa varias APIs y conexiones de red (Shodan, AbuseIPDB, Telegram, DNS). ¿Cuáles son las mejores prácticas para manejar errores de conexión y evitar que el script se detenga inesperadamente?"
 
-- ***Seguridad y protección de claves API***
-- "Estoy almacenando claves API en mi código para Shodan, AbuseIPDB y Telegram. ¿Cuál es la mejor forma de proteger estas credenciales sin exponerlas en el código fuente?"
+- ***Seguridad y protección de claves API***: "Estoy almacenando claves API en mi código para Shodan, AbuseIPDB y Telegram. ¿Cuál es la mejor forma de proteger estas credenciales sin exponerlas en el código fuente?"
 
-- ***Generación de gráficos en Grafana***
-- "Estoy almacenando datos de auditoría DNS en InfluxDB y quiero visualizar patrones de servidores inseguros en Grafana. ¿Qué tipo de gráficos y consultas puedo usar para hacer análisis efectivo?"
+- ***Generación de gráficos en Grafana***: "Estoy almacenando datos de auditoría DNS en InfluxDB y quiero visualizar patrones de servidores inseguros en Grafana. ¿Qué tipo de gráficos y consultas puedo usar para hacer análisis efectivo?"
 
 
 
