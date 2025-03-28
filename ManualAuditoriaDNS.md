@@ -79,7 +79,7 @@ Se importan las bibliotecas necesarias, incluyendo:
 * influxdb_client → Para almacenar resultados en InfluxDB.
 * os, time, re, datetime → Funciones del sistema y manejo de tiempo.
 
-## Configuración de APIs
+## 2. Configuración de APIs
 
 Aquí se definen las claves de API para:
 
@@ -102,7 +102,7 @@ INFLUXDB_ORG = "UAO"
 INFLUXDB_BUCKET = "dns_security"
 ```
 
-## 1. Búsqueda de Servidores DNS en Shodan
+## 3. Búsqueda de Servidores DNS en Shodan
 
 Busca servidores en Shodan con el puerto 53 abierto y devuelve sus IPs:
 ```
@@ -116,7 +116,7 @@ def buscar_dns_expuestos():
         return []
 
 ```
-## 2. Verificación de Resolución(Verificar si un servidor DNS resuelve dominios)
+## 4. Verificación de Resolución(Verificar si un servidor DNS resuelve dominios)
 
 Comprueba si el DNS responde consultas. Se consulta google.com para verificar si el servidor responde:
 ```
@@ -130,7 +130,7 @@ def verificar_resolucion_dns(ip, dominio="google.com"):
         return False, f"{ip} no resolvió {dominio}"
 
 ```
-## 3. Detección de Recursividad y Amplificación
+## 5. Detección de Recursividad y Amplificación
 
 Se verifica si el servidor permite consultas recursivas o genera respuestas anormalmente grandes.
 Un servidor DNS recursivo puede ser explotado para ataques de amplificación.
@@ -167,7 +167,7 @@ def detectar_amplificacion(ip):
         return False, f"Error en {ip} al analizar amplificación."
 
 ```
-## 4. Enviar alerta a Telegram
+## 6. Enviar alerta a Telegram
 
 Si un servidor es recursivo o amplifica, se envía un mensaje a Telegram.:
 ```
@@ -182,12 +182,62 @@ def enviar_alerta_telegram(ip, resolucion, recursividad, amplificacion):
     requests.post(url, data=payload)
 
 ```
-## 5. Registro en InfluxDB
+## 7. Verificar IPs en AbuseIPDB
 
-Los resultados se almacenan para análisis posterior:
+Revisa si una IP ha sido reportada en el último año:
 ```
-def registrar_ip_en_influx(ip, recursividad, amplificacion):
-    point = Point("dns_vulnerable").tag("ip", ip).field("recursivo", int(recursividad)).field("amplifica", int(amplificacion))
+def verificar_ip_abuseipdb(ip):
+    url = "https://api.abuseipdb.com/api/v2/check"
+    headers = {"Key": ABUSEIPDB_API_KEY, "Accept": "application/json"}
+    params = {"ipAddress": ip, "maxAgeInDays": "365"}
+
+    response = requests.get(url, headers=headers, params=params)
+    data = response.json()
+
+    if "data" in data:
+        abuse_score = data["data"]["abuseConfidenceScore"]
+        total_reports = data["data"]["totalReports"]
+        return f"📑 Reportes: {total_reports} ({abuse_score}% confianza)"
+    else:
+        return f"⚠️ No se pudo obtener información para la IP {ip}."
+
+```
+
+## 8. Guardar en InfluxDB
+
+Las IPs vulnerables se almacenan en InfluxDB para visualización en Grafana:
+```
+client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
+write_api = client.write_api(write_options=SYNCHRONOUS)
+
+def registrar_ip_en_influx(ip, resolucion=False, recursividad=False, amplificacion=False):
+    point = Point("dns_vulnerable") \
+        .tag("ip", ip) \
+        .field("resuelve", int(resolucion)) \
+        .field("recursivo", int(recursividad)) \
+        .field("amplifica", int(amplificacion))
     write_api.write(bucket=INFLUXDB_BUCKET, org=INFLUXDB_ORG, record=point)
+
 ```
+
+## 8. Envío de Reportes
+
+Los resultados se guardan en archivos y se envían a Telegram:
+```
+def enviar_archivo_telegram():
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendDocument"
+    files = {"document": open(REPORTE_VULNERABLES, "rb")}
+    data = {"chat_id": CHAT_ID, "caption": "📄 *Reporte de IPs Vulnerables*"}
+    requests.post(url, files=files, data=data)
+
+
+```
+
+# Resumen
+🔹 Busca servidores DNS en Shodan.
+🔹 Verifica si son recursivos o permiten amplificación.
+🔹 Consulta AbuseIPDB para ver reportes previos.
+🔹 Guarda datos en InfluxDB para análisis en Grafana.
+🔹 Notifica vulnerabilidades por Telegram.
+
 Este código permite una auditoría rápida y automatizada de servidores DNS expuestos.
