@@ -14,8 +14,8 @@ SHODAN_API_KEY = "OscSR1MKM2fICcN5KgVBBJIGnXwrIt8z"
 api = shodan.Shodan(SHODAN_API_KEY)
 
 # Configurar Telegram
-TELEGRAM_BOT_TOKEN = "7720656194:AAGRh7hySVMNN36O2IcTl6cJa5vNa-0Sbws"
-CHAT_ID = "1574894198"
+TELEGRAM_BOT_TOKEN = "XXXXXXXXXXXXXXX"
+CHAT_ID = "XXXXXXXXXXXXXXXX"
 
 # Archivos de salida
 RESULTADOS_FILE = "C:/Users/Julian/Desktop/resultados_dns.txt"
