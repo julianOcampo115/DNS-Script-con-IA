@@ -45,42 +45,24 @@ El script realizará las siguientes acciones:
 ## 5. Resultados y Reportes
 
 * Archivos Generados:
-
+```
 - resultados_dns.txt: Contiene los resultados de la auditoría.
-
 - reporte_vulnerables.txt: IPs detectadas con vulnerabilidades.
-
+```
 * Notificaciones:
-
-Telegram recibe alertas con detalles de las IPs vulnerables.
-
+```
+- Telegram recibe alertas con detalles de las IPs vulnerables segun https://www.abuseipdb.com/.
+```
 Base de Datos:
+```
+- Los datos se almacenan en InfluxDB y pueden ser visualizados en herramientas como Grafana.
+```
+## 6. ¡¡¡SEGURIDAD Y RECOMENDACIONES!!!
 
-Los datos se almacenan en InfluxDB y pueden ser visualizados en herramientas como Grafana.
-
-## 6. Seguridad y Consideraciones
-
-Uso Responsable: No utilice este script sin autorización.
-
-Límites de Shodan: Respete los límites de API y evite bloqueos.
-
-Protección de Datos: No comparta su API Key ni credenciales.
-
-## 7. Solución de Problemas
-
-Error de API en Shodan:
-
-Verifique su API Key y asegúrese de que tenga créditos disponibles.
-
-No se reciben notificaciones en Telegram:
-
-Confirme que el bot tiene acceso al chat especificado.
-
-InfluxDB no almacena datos:
-
-Revise la conexión con el servidor y las credenciales.
-
-Para soporte adicional, consulte la documentación de cada servicio.
+## Uso Responsable: No utilice este script sin autorización.
+## Límites de Shodan: Respete los límites de API y evite bloqueos.
+## Protección de Datos: No comparta su API Key ni credenciales.
+## REALICE ESTA PRÁCTICA CON FINES EDUCATIVOS Y DE ENTENDIMIENTO, LA RAZON DE ESTE SCRIPT ES PODER BLOQUEAR SI LAS IPS OBTENIDAS LLEGAN A GENERAR COMPLICACIONES.
 
 
 
