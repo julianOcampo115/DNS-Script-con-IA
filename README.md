@@ -212,3 +212,8 @@ client.close()
 ## Conclusión
 
 Este script permite detectar y almacenar información sobre servidores DNS potencialmente vulnerables en InfluxDB. Además, consulta y muestra los datos registrados en los últimos 10 minutos.
+
+# NOTA:
+- Para no hacer el README tan extenso, se sugiere continuar con la explicación y manuales de usuario en los archivos:
+- Manual Auditoria DNS
+
