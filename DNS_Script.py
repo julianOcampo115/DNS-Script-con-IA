@@ -10,7 +10,7 @@ from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
 # Configurar la API Key de Shodan
-SHODAN_API_KEY = "OscSR1MKM2fICcN5KgVBBJIGnXwrIt8z"
+SHODAN_API_KEY = "XXXXXXXXXXXXXXX"
 api = shodan.Shodan(SHODAN_API_KEY)
 
 # Configurar Telegram
